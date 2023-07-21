@@ -1,1 +1,302 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-white: #fefefe;
+  --color-black: #1a1a1a;
+  --color-dark-gray: #a7a6a6;
+  --color-gray: #d6d6d6;
+  --color-light-gray: #f5f5f5;
+  --color-blue: #1662d6;
+  --color-red: #c72f25;
+  --loading-grey: #ededed;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.bg {
+  &-white {
+    background-color: var(--color-white);
+    color: var(--color-black);
+  }
+
+  &-black {
+    background-color: var(--color-black);
+    color: var(--color-white);
+  }
+
+  &-blue {
+    background-color: var(--color-blue);
+    color: var(--color-white);
+  }
+
+  &-gray {
+    background-color: var(--color-gray);
+    color: var(--color-black);
+  }
+
+  &-ligth-gray {
+    background-color: var(--color-ligth-gray);
+    color: var(--color-black);
+  }
+
+  &-dark-gray {
+    background-color: var(--color-dark-gray);
+    color: var(--color-black);
+  }
+  &-red {
+    background-color: var(--color-red);
+    color: var(--color-white);
+  }
+}
+
+.color {
+  &-white {
+    color: var(--color-white);
+  }
+
+  &-black {
+    color: var(--color-black);
+  }
+
+  &-blue {
+    color: var(--color-blue);
+  }
+
+  &-gray {
+    color: var(--color-gray);
+  }
+
+  &-ligth-gray {
+    color: var(--color-ligth-gray);
+  }
+
+  &-dark-gray {
+    color: var(--color-dark-gray);
+  }
+  &-red {
+    color: var(--color-red);
+  }
+}
+
+.family {
+  &-lato {
+    font-family: 'Lato', sans-serif;
+  }
+
+  &-bebas {
+    font-family: 'Bebas Neue', sans-serif;
+  }
+}
+
+.input-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+
+  & label:not(.radio-label) {
+    text-transform: capitalize;
+    margin-bottom: .5rem;
+    order: 1;
+  }
+
+  & select {
+    cursor: pointer;
+  }
+
+  & .chips {
+    order: 2;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+
+    & .chip {
+      background-color: var(--color-blue);
+      padding: .3rem .2rem .3rem .7rem;
+      border-radius: 25px;
+      font-size: .8rem;
+      color: var(--color-white);
+      display: flex;
+      align-items: center;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-bottom: .5rem;
+
+      &:not(:last-child) {
+        margin-right: .3rem;
+      }
+
+      &:after {
+        content: 'X';
+        background-color: var(--color-white);
+        color: var(--color-dark-gray);
+        width: 1rem;
+        height: 1rem;
+        flex-shrink: 0;
+        display: flex;
+        border-radius: 100%;
+        align-items: center;
+        justify-content: center;
+        line-height: 1px;
+        margin-left: .3rem;
+      }
+
+      &-delete {
+        background-color: var(--color-white);
+        color: var(--color-red);
+        width: 1rem;
+        height: 1rem;
+        flex-shrink: 0;
+        display: flex;
+        border-radius: 100%;
+        align-items: center;
+        justify-content: center;
+        line-height: 1px;
+        margin-left: .3rem;
+        content: 'x';
+      }
+    }
+  }
+
+  & input[type="text"],
+  select {
+    order: 3;
+    border: 1px solid var(--color-dark-gray);
+    padding: .8rem 1rem;
+    border-radius: 5px;
+    width: 100%;
+    outline: none;
+    font-size: 1rem;
+
+    &::placeholder {
+      color: var(--color-dark-gray);
+      font-size: 1rem;
+    }
+
+    &:focus {
+      border: 1.5px solid var(--color-blue);
+    }
+
+    &:required~label::after {
+      content: '*';
+      display: inline-block;
+      color: var(--color-red);
+      margin-left: .1rem;
+    }
+  }
+
+  & .radios {
+    order: 3;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    & .radio-label:not(:last-child){
+      margin-right: 1rem;
+    }
+  }
+
+  & input[type="radio"], input[type="checkbox"] {
+    display: none;
+
+    &:checked + .radio-label::before{
+      background-color: var(--color-blue);
+    }
+    &:checked + .radio-label{
+      background-color: var(--color-blue);
+      color: var(--color-white);
+      border-radius: 25px;
+    }
+    &:checked + .checkbox-label::before{
+      content: '\e907';
+      color: var(--color-blue);
+      border-color: var(--color-blue);
+    }
+  }
+
+  & .radio-label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: all ease-in-out 200ms;
+    padding: .1rem .7rem .1rem .2rem;
+    &::before{
+      content: '';
+      display: inline-block;
+      border-radius: 100%;
+      width: .8rem;
+      height: .8rem;
+      border: 1px solid var(--color-dark-gray);
+      margin-right: .5rem;
+      box-shadow: 0 0 0 2px var(--color-white) inset;
+      transition: all ease-in-out 100ms;
+    }
+  }
+  & .checkbox-label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: all ease-in-out 200ms;
+    &::before{
+      content: '';
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 2px;
+      width: .8rem;
+      height: .8rem;
+      border: 1px solid var(--color-dark-gray);
+      margin-right: .5rem;
+      transition: all ease-in-out 100ms;
+      font-family: 'generalicons', sans-serif;
+      font-size: .7rem;
+    }
+  }
+
+  &.error {
+    & input[type="text"], select {
+      border-color: var(--color-red);
+      color: var(--color-red);
+    }
+
+    & label {
+      color: var(--color-red);
+    }
+  }
+
+  & .input-error {
+    order: 4;
+    color: var(--color-red);
+    width: 100%;
+    text-align: right;
+  }
+}
+
+.button {
+  border: none;
+  outline: none;
+  padding: 0.5rem 1rem;
+  text-transform: capitalize;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all ease-in-out 100ms;
+
+  &:hover:not(:disabled) {
+    box-shadow: inset 0 0 7px #9b9a9c;
+    filter: brightness(92%);
+  }
+
+  &:disabled{
+    cursor: not-allowed;
+    background-color: var(--color-dark-gray);
+  }
+}
