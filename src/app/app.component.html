@@ -1,9 +1,9 @@
-<covenant-search class="data-search"></covenant-search>
+<search></search>
 <div class="data-side">
-  <covenant-jobs-list></covenant-jobs-list>
-  <covenant-job-description class="w-100 data-side-description"></covenant-job-description>
+  <jobs-list></jobs-list>
+  <job-description class="w-100 data-side-description"></job-description>
 </div>
-<covenant-popup></covenant-popup>
+<popup></popup>
 <div *ngIf="_alert.toast"
   class="toast family-lato bg-{{_alert.toast.background||'dark-grey'}} color-{{_alert.toast.color||'white'}} {{_alert.toast.state}}">
   {{_alert.toast.text}}
