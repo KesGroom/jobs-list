@@ -1,0 +1,22 @@
+<header class="search-container">
+  <h1 class="family-bebas color-white search-container-title">Search Jobs</h1>
+  <div class="search-container-card">
+    <form [formGroup]="searchForm">
+      <!-- Title Input -->
+      <div class="input-group family-lato">
+        <label for="input-title">Job Title</label>
+        <input list="job-titles" type="text" (keyup)="typingForSearch($event)" formControlName="title" id="input-title"
+          placeholder="Type the job you are looking for">
+        <datalist id="job-titles">
+          <option *ngFor="let option of comboBoxOptions" [value]="option"></option>
+        </datalist>
+      </div>
+      <div class="input-group family-lato">
+        <label for="input-location">Location</label>
+        <input type="text" (keyup)="typingForSearch($event)" formControlName="location" id="input-location"
+          placeholder="Type city">
+      </div>
+      <i (click)="search()" class="gen-icon-s-search bg-blue color-white"></i>
+    </form>
+  </div>
+</header>

@@ -1,0 +1,51 @@
+<div class="popup family-lato" [ngClass]="{'show': _alerts.showPopUp}">
+  <div class="card-popup {{cardPopUpState}}" [formGroup]="applyForm">
+    <ng-container *ngFor="let formElement of formElements">
+      <div class="input-group"
+        [ngClass]="{'error':(applyForm.controls[formElement.controlname].touched || applyForm.controls[formElement.controlname].dirty) && applyForm.controls[formElement.controlname].errors}">
+        <ng-container *ngIf="['input', 'chips'].includes(formElement.type)">
+          <ng-container *ngIf="formElement.type === 'chips'">
+            <div class="chips">
+              <span (click)="deleteChip(chip, formElement)" class="chip"
+                *ngFor="let chip of formElement.chips">{{chip}}</span>
+            </div>
+          </ng-container>
+          <input (keyup)="addChip($event, formElement)" type="text" [required]="formElement.required"
+            [placeholder]="formElement.placeholder" [formControlName]="formElement.controlname"
+            [id]="formElement.controlname">
+        </ng-container>
+        <ng-container *ngIf="formElement.type == 'select'">
+          <select [required]="formElement.required" [id]="formElement.controlname"
+            [formControlName]="formElement.controlname">
+            <option [disabled]="option.disabled" *ngFor="let option of formElement.options" [value]="option.value"
+              [selected]="option.default">
+              {{option.label}}</option>
+          </select>
+        </ng-container>
+        <ng-container *ngIf="formElement.type == 'radio'">
+          <div class="radios">
+            <ng-container *ngFor="let radio of formElement.options; index as i">
+              <input type="radio" [checked]="radio.default" [value]="radio.value"
+                [formControlName]="formElement.controlname" [id]="formElement.controlname + i">
+              <label class="radio-label" [for]="formElement.controlname + i">{{radio.label}}</label>
+            </ng-container>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="formElement.type == 'checkbox'">
+          <input type="checkbox" [value]="1" [formControlName]="formElement.controlname" [id]="formElement.controlname">
+          <label class="checkbox-label" [for]="formElement.controlname">{{formElement.labeltext}}</label>
+        </ng-container>
+        <label *ngIf="formElement.type != 'checkbox'" [for]="formElement.controlname">{{formElement.labeltext}}</label>
+        <small *ngIf="(applyForm.controls[formElement.controlname].touched || applyForm.controls[formElement.controlname].dirty)
+          && applyForm.controls[formElement.controlname].errors" class="input-error">
+          {{getError(applyForm.controls[formElement.controlname], formElement.errors)}}
+        </small>
+      </div>
+    </ng-container>
+    <div class="card-popup-footer">
+      <button class="button color-white bg-red" (click)="close()">Close</button>
+      <button class="button color-white bg-blue" (click)="checkErrorAndSend()"
+        [disabled]="applyForm.invalid || applyForm.controls['terms'].value === 1">Save changes</button>
+    </div>
+  </div>
+</div>

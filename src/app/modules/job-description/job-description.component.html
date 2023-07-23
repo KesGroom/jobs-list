@@ -1,0 +1,39 @@
+<div class="description-container family-lato">
+  <div class="description-card" [ngClass]="{'description-loading': _jobs.loading}" *ngIf="job">
+    <ng-container *ngIf="!_jobs.loading">
+      <div (click)="_jobs.jobIdSelect = '0'" class="close color-red">
+        <span>Close Job</span>
+        <i class="gen-icon-s-times "></i>
+      </div>
+      <h1 class="color-blue">{{job.title}} - ({{job.numberId}})</h1>
+      <div class="description-card-details">
+        <div class="section">
+          <i class="gen-icon-r-mark color-dark-gray"></i>
+          <span>
+            <span class="color-dark-gray">Location</span><br>
+            {{job.location}}
+          </span>
+        </div>
+        <div class="section">
+          <i class="gen-icon-r-coin"></i>
+          <span>
+            <span class="color-dark-gray">Salary</span><br>
+            ${{ job.salary.slice(0,-2).replaceAll(',', '.') }}
+          </span>
+        </div>
+        <div class="section">
+          <i class="gen-icon-r-bag"></i>
+          <span>
+            <span class="color-dark-gray">Type</span><br>
+            {{job.type}}<br>{{job.shift}}
+          </span>
+        </div>
+        <button (click)="apply()" class="apply-button bg-blue color-white family-lato">Apply</button>
+      </div>
+      <h1 class="color-blue">Description</h1>
+      <p [innerHTML]="job.description"></p>
+      <h1 class="color-blue">Requirements</h1>
+      <p [innerHTML]="job.requirements"></p>
+    </ng-container>
+  </div>
+</div>
