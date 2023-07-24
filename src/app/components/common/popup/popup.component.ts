@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AlertsService } from 'src/app/alerts.service';
+import { AlertsService } from 'src/app/components/common/services/alerts.service';
 import { Job } from 'src/app/interfaces';
-import { JobsListService } from 'src/app/modules/jobs-list/jobs-list.service';
+import { JobsListService } from '../../core/jobs-list/jobs-list.service';
 
 @Component({
   selector: 'popup',

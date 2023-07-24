@@ -34,6 +34,8 @@ export class AlertsService {
    * toast state to 'shake' and then 'hide' after a certain amount of time.
    */
   setToast(text: string, background: Colors = 'dark-gray', color: Colors = 'white') {
+    console.log('toast!!');
+
     this.toast = { state: 'show', text, background, color };
     this.programmingStates();
   }

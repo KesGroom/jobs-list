@@ -1,13 +1,14 @@
 <div class="list family-lato">
   <ng-container *ngIf="!_list.loading; else loaderTemplate">
     <ng-container *ngFor="let job of _list.jobs">
-      <div (click)="_list.setJob(job)" [ngClass]="{'select': job.numberId === _list.jobIdSelect}" class="job">
+      <div (click)="job.numberId !== _list.jobIdSelect? _list.setJob(job):''"
+        [ngClass]="{'select': job.numberId === _list.jobIdSelect}" class="job">
         <span class="job-title">{{ job.title }} - ({{job.numberId}})</span>
         <span class="job-location">{{ job.location }}</span>
         <span class="job-salary">${{ job.salary.slice(0,-2).replaceAll(',', '.') }}</span>
       </div>
-      <covenant-job-description [job]="job" [ngClass]="{'show': _list.jobIdSelect=== job.numberId}"
-        class="wrap-description"></covenant-job-description>
+      <job-description [job]="job" [ngClass]="{'show': _list.jobIdSelect=== job.numberId}"
+        class="wrap-description"></job-description>
     </ng-container>
   </ng-container>
   <ng-template #loaderTemplate>

@@ -1,5 +1,6 @@
 import { Component, OnInit, } from '@angular/core';
-import { AlertsService } from './alerts.service';
+import { AlertsService } from './components/common/services/alerts.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +9,9 @@ import { AlertsService } from './alerts.service';
 })
 export class AppComponent implements OnInit {
   constructor(
-    public _alert: AlertsService
+    public _alert: AlertsService,
+    public activatedRoute: ActivatedRoute
   ) { }
   ngOnInit(): void {
-
   }
 }

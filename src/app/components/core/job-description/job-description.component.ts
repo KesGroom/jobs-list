@@ -1,7 +1,8 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { JobsListService } from '../jobs-list/jobs-list.service';
 import { Job } from 'src/app/interfaces';
-import { AlertsService } from 'src/app/alerts.service';
+import { AlertsService } from 'src/app/components/common/services/alerts.service';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'job-description',
@@ -18,17 +19,12 @@ export class JobDescriptionComponent implements OnInit {
   ) { }
   ngOnInit() {
     if (!this.job) {
-      this._jobs.jobSelected.subscribe({
+      this._jobs.jobSelected.pipe().subscribe({
         next: (response) => {
+          this.job = response;
           setTimeout(() => {
-            const preJob = response;
-            if (preJob) {
-              this.job = preJob;
-            };
-            setTimeout(() => {
-              this._jobs.loading = false;
-            }, 1000);
-          }, this._jobs.jobs.length == 0 ? 200 : 10)
+            this._jobs.loading = false;
+          }, 500);
         }
       })
     }
