@@ -58,7 +58,7 @@ export const JobsResolver: ResolveFn<any> =
       .pipe(
         map((response: any) => {
           if (response.length === 0) {
-            _router.navigate(['/'])
+            _router.navigate(['/jobs'])
             return null;
           }
           else return response;
